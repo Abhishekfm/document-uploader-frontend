@@ -3,9 +3,15 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQuery } from ".";
 import { API_ENDPOINTS } from "../../helper/constant";
 
-interface LoginCredentials {
+export interface LoginCredentials {
   email: string;
   password: string;
+  role?: AuthRoles;
+}
+
+export enum AuthRoles {
+  ADMIN = "ADMIN",
+  USER = "USER",
 }
 
 interface LoginResp {
@@ -29,10 +35,10 @@ export const userApi = createApi({
       }),
     }),
     signUp: builder.mutation<LoginResp, LoginCredentials>({
-      query: ({ email, password }) => ({
+      query: ({ email, password, role }) => ({
         url: API_ENDPOINTS.signUp,
         method: "POST",
-        body: { email, password },
+        body: { email, password, role },
         headers: {
           "Content-Type": "application/json",
         },

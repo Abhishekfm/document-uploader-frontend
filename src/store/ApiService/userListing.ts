@@ -20,8 +20,22 @@ export const userDetailsApi = createApi({
         },
       }),
     }),
+    uploadDoc: builder.mutation<
+      Response<UserDetailsType[]>,
+      { data: FormData }
+    >({
+      query: ({ data }) => ({
+        url: `${API_ENDPOINTS.users}`,
+        method: "POST",
+        data,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }),
+    }),
   }),
 });
 
-export const { useGetUserListingMutation } = userDetailsApi;
+export const { useGetUserListingMutation, useUploadDocMutation } =
+  userDetailsApi;
 export default userDetailsApi;

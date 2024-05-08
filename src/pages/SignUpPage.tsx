@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import { useSignUpMutation } from "../store/ApiService/authService";
+import {
+  LoginCredentials,
+  useSignUpMutation,
+} from "../store/ApiService/authService";
 import { deleteToken, setToken } from "../store/slice/authSlice";
 import { useAppDispatch, useAppSelector } from "../store/hook/storeHook";
 import CredentialForm from "../components/CredentialForm";
@@ -20,6 +23,7 @@ export default function SignUpPage() {
     register,
     handleSubmit,
     getValues,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(LOGIN_VALIDATION_SCHEMA),
@@ -27,7 +31,7 @@ export default function SignUpPage() {
   });
 
   const onSubmitHandler = handleSubmit((bodyData) => {
-    signUp(bodyData);
+    signUp(bodyData as LoginCredentials);
     setBtnDisable(true);
   });
 
@@ -80,6 +84,7 @@ export default function SignUpPage() {
                   register={register}
                   errors={errors}
                   getValues={getValues}
+                  setValue={setValue}
                 />
                 <button
                   className={`w-full text-white p-2 rounded ${

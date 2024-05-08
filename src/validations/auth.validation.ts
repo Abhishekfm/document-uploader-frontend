@@ -1,5 +1,8 @@
 import * as Yup from "yup";
 import { NUMBER } from "../helper/constant";
+import { AuthRoles } from "../store/ApiService/authService";
+
+const Auth_Array = [AuthRoles.ADMIN, AuthRoles.USER, ""];
 
 const VALIDATION_MESSAGES = {
   EMAIL: { REQUIRED: "Email is mandatory.", INVALID: "Invalid email address." },
@@ -25,6 +28,7 @@ export const LOGIN_VALIDATION_SCHEMA = Yup.object({
     .max(NUMBER.ONE_HUNDRED)
     .required(VALIDATION_MESSAGES.EMAIL.REQUIRED),
   password: Yup.string().required(VALIDATION_MESSAGES.PASSWORD.REQUIRED),
+  role: Yup.string().oneOf(Auth_Array).optional(),
 });
 
 // .min(8, VALIDATION_MESSAGES.PASSWORD.MIN_LENGTH)

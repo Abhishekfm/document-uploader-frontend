@@ -1,8 +1,8 @@
 export const API_ENDPOINTS = {
   login: "/api/login",
-  signUp: "/api/register",
-  logout: "/logout",
-  users: "/api/users",
+  signUp: "/api/createUser",
+  logout: "/api/logout",
+  users: "/u/uploads",
 };
 
 export const APPLICATION_ENDPOINTS = {
@@ -15,4 +15,4 @@ export const NUMBER = {
   ONE_HUNDRED: 100,
 };
 
-export const BACKEND_API_URL = "https://reqres.in";
+export const BACKEND_API_URL = "http://localhost:4000";

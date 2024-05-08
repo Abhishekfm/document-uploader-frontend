@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import { useLoginMutation } from "../store/ApiService/authService";
+import {
+  LoginCredentials,
+  useLoginMutation,
+} from "../store/ApiService/authService";
 import { deleteToken, setToken } from "../store/slice/authSlice";
 import { useAppDispatch, useAppSelector } from "../store/hook/storeHook";
 import CredentialForm from "../components/CredentialForm";
@@ -27,7 +30,7 @@ export default function SignInPage() {
   });
 
   const onSubmitHandler = handleSubmit((bodyData) => {
-    login(bodyData);
+    login(bodyData as LoginCredentials);
     setBtnDisable(true);
   });
 
